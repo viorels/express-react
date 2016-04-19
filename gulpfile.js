@@ -24,6 +24,8 @@ gulp.task('bundle', ['copy'], function() {
 gulp.task('copy', function() {
     gulp.src(['app/*.css'])
         .pipe(gulp.dest('./.tmp'))
+    gulp.src(['bower_components/skeleton/css/*.css'])
+        .pipe(gulp.dest('./.tmp'))
 })
 
 gulp.task('serve', ['bundle', 'live-server'], function() {
