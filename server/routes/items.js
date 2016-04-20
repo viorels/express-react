@@ -14,4 +14,24 @@ module.exports = function (app) {
                 res.status(200).send()
             });
         });
+
+    app.route('/api/items/:id')
+        .delete(function (req, res) {
+            GroceryItem.findOneAndRemove({
+                _id: req.params.id
+            }, function(error, doc) {
+                res.send();
+            });
+        })
+        .patch(function (req, res) {
+            GroceryItem.findOne({
+                _id: req.body._id
+            }, function (error, doc) {
+                for (var key in req.body) {
+                    doc[key] = req.body[key];
+                }
+                doc.save();
+                res.status(200).send();
+            })
+        })
 };

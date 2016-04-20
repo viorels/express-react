@@ -4,7 +4,7 @@ var helper = require('./../helpers/RestHelper.js');
 function GroceryItemStore() {
     var items = [];
     var listeners = [];
-    var items_url = "api/items";
+    var items_url = "api/items/";
 
     helper.get(items_url)
         .then(function(data) {
@@ -35,12 +35,14 @@ function GroceryItemStore() {
     function deleteGroceryItem(item) {
         items.splice(_getIndexOf(item), 1);
         triggerListeners();
+        helper.del(items_url + item._id);
     }
 
     function setGroceryItemBought(item, isBought) {
         var _item = items[_getIndexOf(item)];
         _item.purchased = isBought || false;
         triggerListeners();
+        helper.patch(items_url + item._id, item);
     }
 
     function onChange(listener) {
