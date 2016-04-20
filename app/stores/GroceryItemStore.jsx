@@ -4,8 +4,9 @@ var helper = require('./../helpers/RestHelper.js');
 function GroceryItemStore() {
     var items = [];
     var listeners = [];
+    var items_url = "api/items";
 
-    helper.get("api/items")
+    helper.get(items_url)
         .then(function(data) {
             items = data;
             triggerListeners();
@@ -18,6 +19,7 @@ function GroceryItemStore() {
     function addGroceryItem(item) {
         items.push(item);
         triggerListeners();
+        helper.post(items_url, item);
     }
 
     function _getIndexOf(item) {

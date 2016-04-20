@@ -11,7 +11,13 @@ module.exports = function (app) {
             name: "Snarks"
         }];
 
-    app.get('/api/items', function(req, res) {
-        res.send(items);
-    })
+    app.route('/api/items')
+        .get(function(req, res) {
+            res.send(items);
+        })
+        .post(function(req, res) {
+            var item = req.body;
+            items.push(item);
+            res.send();
+        })
 }

@@ -10,5 +10,16 @@ module.exports = {
                 error: error
             })
         });
+    },
+    post: function(url, data) {
+        return new Promise(function(success, error) {
+            $.ajax({
+                url: url,
+                type: "post",
+                data: data,
+                success: success,
+                error: error
+            })
+        });
     }
 }
