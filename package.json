@@ -24,9 +24,9 @@
     "mongoose": "^4.4.12",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
-    "reactify": "^1.1.1",
     "vinyl-source-stream": "^1.1.0"
   },
   "devDependencies": {
+    "babelify": "^7.2.0"
   }
 }

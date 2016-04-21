@@ -2,8 +2,8 @@ var gulp = require('gulp');
 var LiveServer = require('gulp-live-server');
 var browserSync = require('browser-sync');
 var browserify = require('browserify');
+var babelify = require("babelify");
 var source = require('vinyl-source-stream');
-var reactify = require('reactify');
 
 gulp.task('live-server', function() {
     var server = new LiveServer('server/main.js');
@@ -15,7 +15,7 @@ gulp.task('bundle', ['copy'], function() {
             entries: 'app/main.jsx',
             debug: true,
         })
-        .transform(reactify)
+        .transform(babelify)
         .bundle()
         .pipe(source('app.js'))
         .pipe(gulp.dest('./.tmp'))
